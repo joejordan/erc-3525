@@ -1,10 +1,10 @@
-# ERC-3525 Reference Implementation
+# ERC-3525 Extended
 
-[Solv Protocol](https://solv.finance)
+This is a fork of the official implementation of [ERC-3525](https://github.com/solv-finance/erc-3525)
 
-This is work-in-progress implementation of [ERC-3525](https://eips.ethereum.org/EIPS/eip-3525)
+ERC-3525 Extended adds a non-upgradeable version of the ERC-3525 token and includes niceties like NatSpec inheritance to the contracts.
 
-Ruquirements:
+Requirements:
 
 - Solidity 0.8
 
