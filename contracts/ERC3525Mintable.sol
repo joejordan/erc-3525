@@ -2,12 +2,31 @@
 
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "./ERC3525.sol";
 
 contract ERC3525Mintable is Context, ERC3525 {
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525(name_, symbol_, decimals_) {
+    function initialize(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) public virtual initializer {
+        __ERC3525Mintable_init(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525Mintable_init(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) internal onlyInitializing{
+        __ERC3525_init_unchained(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525Mintable_init_unchained() internal onlyInitializing {
         // solhint-disable-previous-line no-empty-blocks
     }
 

@@ -7,7 +7,25 @@ import "./ERC3525Mintable.sol";
 
 contract ERC3525Burnable is Context, ERC3525Mintable {
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525Mintable(name_, symbol_, decimals_) {
+    function initialize(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) public virtual override initializer {
+        __ERC3525Burnable_init(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525Burnable_init(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) internal onlyInitializing {
+        __ERC3525_init_unchained(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525Burnable_init_unchained() internal onlyInitializing {
         // solhint-disable-previous-line no-empty-blocks
     }
 

@@ -11,7 +11,25 @@ contract ERC3525SlotApprovable is Context, ERC3525SlotEnumerable, IERC3525SlotAp
     // @dev owner => slot => operator => approved
     mapping(address => mapping(uint256 => mapping(address => bool))) private _slotApprovals;
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525SlotEnumerable(name_, symbol_, decimals_)  {
+    function initialize(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) public virtual override initializer {
+        __ERC3525SlotApprovable_init(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525SlotApprovable_init(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) internal onlyInitializing {
+        __ERC3525SlotEnumerable_init(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525SlotApprovable_init_unchained() internal onlyInitializing {
         // solhint-disable-previous-line no-empty-blocks
     }
 

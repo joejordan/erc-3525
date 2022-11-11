@@ -2,6 +2,7 @@
 
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
@@ -15,7 +16,7 @@ import "./extensions/IERC721Metadata.sol";
 import "./extensions/IERC3525Metadata.sol";
 import "./periphery/interface/IERC3525MetadataDescriptor.sol";
 
-contract ERC3525 is Context, IERC3525Metadata, IERC721Enumerable {
+contract ERC3525 is Initializable, Context, IERC3525Metadata, IERC721Enumerable {
     using Strings for address;
     using Strings for uint256;
     using Address for address;
@@ -54,7 +55,13 @@ contract ERC3525 is Context, IERC3525Metadata, IERC721Enumerable {
 
     IERC3525MetadataDescriptor public metadataDescriptor;
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) {
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525_init(string memory name_, string memory symbol_, uint8 decimals_) internal onlyInitializing {
+        __ERC3525_init_unchained(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525_init_unchained(string memory name_, string memory symbol_, uint8 decimals_) internal onlyInitializing {
         _name = name_;
         _symbol = symbol_;
         _decimals = decimals_;
