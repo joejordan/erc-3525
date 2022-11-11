@@ -20,7 +20,25 @@ contract ERC3525SlotEnumerable is Context, ERC3525, IERC3525SlotEnumerable {
     // slot => index
     mapping(uint256 => uint256) private _allSlotsIndex;
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525(name_, symbol_, decimals_)  {
+    function initialize(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) public virtual initializer {
+        __ERC3525SlotEnumerable_init(name_, symbol_, decimals_);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525SlotEnumerable_init(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) internal onlyInitializing {
+        // solhint-disable-previous-line no-empty-blocks
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function __ERC3525SlotEnumerable_init_unchained() internal onlyInitializing {
         // solhint-disable-previous-line no-empty-blocks
     }
 
