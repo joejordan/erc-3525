@@ -22,9 +22,11 @@ contract ERC3525SlotEnumerableUpgradeable is Initializable, ContextUpgradeable, 
     // slot => index
     mapping(uint256 => uint256) private _allSlotsIndex;
 
+    // solhint-disable-next-line func-name-mixedcase
     function __ERC3525SlotEnumerable_init() internal onlyInitializing{
     }
 
+    // solhint-disable-next-line func-name-mixedcase
     function __ERC3525SlotEnumerable_init_unchained() internal onlyInitializing {
     }
 
