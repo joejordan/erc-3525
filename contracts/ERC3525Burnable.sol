@@ -31,11 +31,14 @@ contract ERC3525Burnable is Context, ERC3525Mintable {
 
     function burn(uint256 tokenId_) public virtual {
         require(_isApprovedOrOwner(_msgSender(), tokenId_), "ERC3525: caller is not token owner nor approved");
+        uint256 burnedValue = balanceOf(tokenId_);
         ERC3525._burn(tokenId_);
+        _decrementTotalSupply(tokenId_, burnedValue);
     }
 
     function burnValue(uint256 tokenId_, uint256 burnValue_) public virtual {
         require(_isApprovedOrOwner(_msgSender(), tokenId_), "ERC3525: caller is not token owner nor approved");
         ERC3525._burnValue(tokenId_, burnValue_);
+        _decrementTotalSupply(tokenId_, burnValue_);
     }
 }

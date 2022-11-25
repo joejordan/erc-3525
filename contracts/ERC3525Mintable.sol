@@ -8,6 +8,8 @@ import "./ERC3525.sol";
 
 contract ERC3525Mintable is Context, ERC3525 {
 
+    mapping(uint256 => uint256) private _slotTotalSupply;
+
     function initialize(
         string memory name_,
         string memory symbol_,
@@ -30,19 +32,25 @@ contract ERC3525Mintable is Context, ERC3525 {
         // solhint-disable-previous-line no-empty-blocks
     }
 
-    function mint(
-        address mintTo_,
-        uint256 tokenId_,
-        uint256 slot_,
-        uint256 value_
-    ) public virtual {
-        ERC3525._mint(mintTo_, tokenId_, slot_, value_);
+    function slotTotalSupply(uint256 slot_) public virtual view returns(uint256) {
+        return _slotTotalSupply[slot_];
     }
 
-    function mintValue(
-        uint256 tokenId_,
-        uint256 value_
-    ) public virtual {
+    function mint(address mintTo_, uint256 tokenId_, uint256 slot_, uint256 value_) public virtual {
+        ERC3525._mint(mintTo_, tokenId_, slot_, value_);
+        _incrementTotalSupply(tokenId_, value_);
+    }
+
+    function mintValue(uint256 tokenId_, uint256 value_) public virtual {
         ERC3525._mintValue(tokenId_, value_);
+        _incrementTotalSupply(tokenId_, value_);
+    }
+
+    function _incrementTotalSupply(uint256 tokenId_, uint256 value_) internal {
+        _slotTotalSupply[slotOf(tokenId_)] += value_;
+    }
+
+    function _decrementTotalSupply(uint256 tokenId_, uint256 value_) internal {
+        _slotTotalSupply[slotOf(tokenId_)] -= value_;
     }
 }
