@@ -23,7 +23,7 @@ abstract contract ERC3525SlotMetadata is IERC3525SlotMetadata {
         string memory symbol_,
         uint8 decimals_
     ) public virtual {
-        require(_slotInitialized[slot_], "ERC3525SlotMetadata: Slot is already initialized");
+        require(!_slotInitialized[slot_], "ERC3525SlotMetadata: Slot is already initialized");
         slotMetadata[slot_] = SlotMetadata({name: name_, symbol: symbol_, decimals: decimals_});
         _slotInitialized[slot_] = true;
     }
