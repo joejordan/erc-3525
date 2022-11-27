@@ -4,8 +4,9 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "../ERC3525SlotApprovable.sol";
+import "../ERC3525SlotMetadata.sol";
 
-contract ERC3525AllRoundMock is Context, ERC3525SlotApprovable {
+contract ERC3525AllRoundMock is Context, ERC3525SlotApprovable, ERC3525SlotMetadata {
 
     constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525SlotApprovable(name_, symbol_, decimals_) {
         // solhint-disable-previous-line no-empty-blocks
