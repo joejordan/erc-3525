@@ -49,6 +49,11 @@ const INTERFACES = {
     'transferFrom(uint256,address,uint256)',
   ],
   ERC3525Metadata: [
+    'slotName(uint256)',
+    'slotSymbol(uint256)',
+    'slotDecimals(uint256)',
+  ],
+  ERC3525SlotMetadata: [
     'contractURI()',
     'slotURI(uint256)',
   ],
