@@ -8,7 +8,7 @@ import "../ERC3525SlotMetadata.sol";
 
 contract ERC3525AllRoundMock is Context, ERC3525SlotApprovable, ERC3525SlotMetadata {
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525SlotApprovable(name_, symbol_, decimals_) {
+    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525SlotApprovable() {
         // solhint-disable-previous-line no-empty-blocks
     }
 

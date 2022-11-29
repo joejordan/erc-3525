@@ -8,7 +8,7 @@ import "../ERC3525.sol";
 
 contract ERC3525BaseMock is Initializable, Context, ERC3525 {
 
-    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525(name_, symbol_, decimals_) {
+    constructor(string memory name_, string memory symbol_, uint8 decimals_) ERC3525() {
         // solhint-disable-previous-line no-empty-blocks
     }
 
